@@ -2,7 +2,12 @@ package com.simshi.rentalStore;
 
 abstract class Price {
 	abstract int getPriceCode();
+
 	abstract double getCharge(int daysRented);
+
+	int getFrequentRenterPoints(int daysRented) {
+		return 1;
+	}
 }
 
 class ChildrensPrice extends Price {
@@ -38,6 +43,10 @@ class RegularPrice extends Price {
 		if (daysRented > 2)
 			result += (daysRented - 2) * 1.5;
 		return result;
+	}
+
+	int getFrequentRenterPoints(int daysRented) {
+		return (daysRented > 1) ? 2 : 1;
 	}
 }
 
@@ -82,9 +91,6 @@ public class Movie {
 	}
 
 	int getFrequentRenterPoints(int daysRented) {
-		if (getPriceCode() == Movie.NEW_RELEASE && daysRented > 1)
-			return 2;
-		else
-			return 1;
+		return _price.getFrequentRenterPoints(daysRented);
 	}
 }
