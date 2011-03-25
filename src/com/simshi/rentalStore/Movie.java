@@ -40,6 +40,9 @@ public class Movie {
 	public static final int CHILDRENS = 2;
 	public static final int REGULAR = 0;
 	public static final int NEW_RELEASE = 1;
+	private static final Price _regularPrice = new RegularPrice();
+	private static final Price _childrensPrice = new ChildrensPrice();
+	private static final Price _newReleasePrice = new NewReleasePrice();
 	private String _title;
 	private Price _price;
 
@@ -51,13 +54,13 @@ public class Movie {
 	private void setPriceCode(int arg) {
 		switch (arg) {
 		case REGULAR:
-			_price = new RegularPrice();
+			_price = _regularPrice;
 			break;
 		case CHILDRENS:
-			_price = new ChildrensPrice();
+			_price = _childrensPrice;
 			break;
 		case NEW_RELEASE:
-			_price = new NewReleasePrice();
+			_price = _newReleasePrice;
 			break;
 		default:
 			throw new IllegalArgumentException("Incorrect Price Code");
