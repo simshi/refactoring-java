@@ -23,7 +23,7 @@ public class Movie {
 	public String getTitle() {
 		return _title;
 	};
-	
+
 	double getCharge(int daysRented) {
 		double result = 0;
 		switch (getPriceCode()) {
@@ -42,5 +42,13 @@ public class Movie {
 			break;
 		}
 		return result;
+	}
+
+	int getFrequentRenterPoints(int daysRented) {
+		if (getPriceCode() == Movie.NEW_RELEASE
+				&& daysRented > 1)
+			return 2;
+		else
+			return 1;
 	}
 }
